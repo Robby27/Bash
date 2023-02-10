@@ -1,0 +1,30 @@
+Thread Lifecycle
+A new threads are created with Thread.new. You can also use the synonyms Thread.start and Thread.fork.
+
+There is no need to start a thread after creating it, it begins running automatically when CPU resources become available.
+
+The Thread class defines a number of methods to query and manipulate the thread while it is running. A thread runs the code in the block associated with the call to Thread.new and then it stops running.
+
+The value of the last expression in that block is the value of the thread, and can be obtained by calling the value method of the Thread object. If the thread has run to completion, then the value returns the thread's value right away. Otherwise, the value method blocks and does not return until the thread has completed.
+
+The class method Thread.current returns the Thread object that represents the current thread. This allows threads to manipulate themselves. The class method Thread.main returns the Thread object that represents the main thread. This is the initial thread of execution that began when the Ruby program was started.
+
+You can wait for a particular thread to finish by calling that thread's Thread.join method. The calling thread will block until the given thread is finished.
+
+Threads and Exceptions
+If an exception is raised in the main thread, and is not handled anywhere, the Ruby interpreter prints a message and exits. In threads, other than the main thread, unhandled exceptions cause the thread to stop running.
+
+If a thread t exits because of an unhandled exception, and another thread s calls t.join or t.value, then the exception that occurred in t is raised in the thread s.
+
+If Thread.abort_on_exception is false, the default condition, an unhandled exception simply kills the current thread and all the rest continue to run.
+
+If you would like any unhandled exception in any thread to cause the interpreter to exit, set the class method Thread.abort_on_exception to true.
+
+t = Thread.new { ... }
+t.abort_on_exception = true
+Thread Variables
+A thread can normally access any variables that are in scope when the thread is created. Variables local to the block of a thread are local to the thread, and are not shared.
+
+Thread class features a special facility that allows thread-local variables to be created and accessed by name. You simply treat the thread object as if it were a Hash, writing to elements using []= and reading them back using [].
+
+In this example, each thread records the current value of the variable count in a threadlocal variable with the key mycount.
