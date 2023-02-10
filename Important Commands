@@ -1,0 +1,18 @@
+Important Commands
+Parameters	Options	Description
+-input directory/file-name	Required	Input location for mapper.
+-output directory-name	Required	Output location for reducer.
+-mapper executable or script or JavaClassName	Required	Mapper executable.
+-reducer executable or script or JavaClassName	Required	Reducer executable.
+-file file-name	Optional	Makes the mapper, reducer, or combiner executable available locally on the compute nodes.
+-inputformat JavaClassName	Optional	Class you supply should return key/value pairs of Text class. If not specified, TextInputFormat is used as the default.
+-outputformat JavaClassName	Optional	Class you supply should take key/value pairs of Text class. If not specified, TextOutputformat is used as the default.
+-partitioner JavaClassName	Optional	Class that determines which reduce a key is sent to.
+-combiner streamingCommand or JavaClassName	Optional	Combiner executable for map output.
+-cmdenv name=value	Optional	Passes the environment variable to streaming commands.
+-inputreader	Optional	For backwards-compatibility: specifies a record reader class (instead of an input format class).
+-verbose	Optional	Verbose output.
+-lazyOutput	Optional	Creates output lazily. For example, if the output format is based on FileOutputFormat, the output file is created only on the first call to output.collect (or Context.write).
+-numReduceTasks	Optional	Specifies the number of reducers.
+-mapdebug	Optional	Script to call when map task fails.
+-reducedebug	Optional	Script to call when reduce task fails.
