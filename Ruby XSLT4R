@@ -1,0 +1,24 @@
+XSLT4R
+XSLT4R is written by Michael Neumann and can be found at the RAA in the Library section under XML. XSLT4R uses a simple commandline interface, though it can alternatively be used within a third-party application to transform an XML document.
+
+XSLT4R needs XMLScan to operate, which is included within the XSLT4R archive and which is also a 100 percent Ruby module. These modules can be installed using standard Ruby installation method (i.e., ruby install.rb).
+
+XSLT4R has the following syntax −
+
+ruby xslt.rb stylesheet.xsl document.xml [arguments]
+If you want to use XSLT4R from within an application, you can include XSLT and input the parameters you need. Here is the example −
+
+require "xslt"
+
+stylesheet = File.readlines("stylesheet.xsl").to_s
+xml_doc = File.readlines("document.xml").to_s
+arguments = { 'image_dir' => '/....' }
+sheet = XSLT::Stylesheet.new( stylesheet, arguments )
+
+# output to StdOut
+sheet.apply( xml_doc )
+
+# output to 'str'
+str = ""
+sheet.output = [ str ]
+sheet.apply( xml_doc )
