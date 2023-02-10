@@ -1,0 +1,134 @@
+hdfs-site.xml
+
+The hdfs-site.xml file contains information such as the value of replication data, namenode path, and datanode paths of your local file systems. It means the place where you want to store the Hadoop infrastructure.
+
+Let us assume the following data.
+
+dfs.replication (data replication value) = 1 
+
+(In the below given path /hadoop/ is the user name. 
+hadoopinfra/hdfs/namenode is the directory created by hdfs file system.) 
+namenode path = //home/hadoop/hadoopinfra/hdfs/namenode 
+
+(hadoopinfra/hdfs/datanode is the directory created by hdfs file system.) 
+datanode path = //home/hadoop/hadoopinfra/hdfs/datanode 
+Open this file and add the following properties in between the <configuration> </configuration> tags in this file.
+
+<configuration>
+   <property>
+      <name>dfs.replication</name>
+      <value>1</value>
+   </property>
+    
+   <property>
+      <name>dfs.name.dir</name>
+      <value>file:///home/hadoop/hadoopinfra/hdfs/namenode </value>
+   </property>
+    
+   <property>
+      <name>dfs.data.dir</name> 
+      <value>file:///home/hadoop/hadoopinfra/hdfs/datanode </value> 
+   </property>
+</configuration>
+Note − In the above file, all the property values are user-defined and you can make changes according to your Hadoop infrastructure.
+
+yarn-site.xml
+
+This file is used to configure yarn into Hadoop. Open the yarn-site.xml file and add the following properties in between the <configuration>, </configuration> tags in this file.
+
+<configuration>
+   <property>
+      <name>yarn.nodemanager.aux-services</name>
+      <value>mapreduce_shuffle</value> 
+   </property>
+</configuration>
+mapred-site.xml
+
+This file is used to specify which MapReduce framework we are using. By default, Hadoop contains a template of yarn-site.xml. First of all, it is required to copy the file from mapred-site.xml.template to mapred-site.xml file using the following command.
+
+$ cp mapred-site.xml.template mapred-site.xml 
+Open mapred-site.xml file and add the following properties in between the <configuration>, </configuration>tags in this file.
+
+<configuration>
+   <property> 
+      <name>mapreduce.framework.name</name>
+      <value>yarn</value>
+   </property>
+</configuration>
+Verifying Hadoop Installation
+The following steps are used to verify the Hadoop installation.
+
+Step 1 − Name Node Setup
+Set up the namenode using the command “hdfs namenode -format” as follows.
+
+$ cd ~ 
+$ hdfs namenode -format 
+The expected result is as follows.
+
+10/24/14 21:30:55 INFO namenode.NameNode: STARTUP_MSG: 
+/************************************************************ 
+STARTUP_MSG: Starting NameNode 
+STARTUP_MSG:   host = localhost/192.168.1.11 
+STARTUP_MSG:   args = [-format] 
+STARTUP_MSG:   version = 2.4.1 
+...
+...
+10/24/14 21:30:56 INFO common.Storage: Storage directory 
+/home/hadoop/hadoopinfra/hdfs/namenode has been successfully formatted. 
+10/24/14 21:30:56 INFO namenode.NNStorageRetentionManager: Going to 
+retain 1 images with txid >= 0 
+10/24/14 21:30:56 INFO util.ExitUtil: Exiting with status 0 
+10/24/14 21:30:56 INFO namenode.NameNode: SHUTDOWN_MSG: 
+/************************************************************ 
+SHUTDOWN_MSG: Shutting down NameNode at localhost/192.168.1.11 
+************************************************************/
+Step 2 − Verifying Hadoop dfs
+The following command is used to start dfs. Executing this command will start your Hadoop file system.
+
+$ start-dfs.sh 
+The expected output is as follows −
+
+10/24/14 21:37:56 
+Starting namenodes on [localhost] 
+localhost: starting namenode, logging to /home/hadoop/hadoop
+2.4.1/logs/hadoop-hadoop-namenode-localhost.out 
+localhost: starting datanode, logging to /home/hadoop/hadoop
+2.4.1/logs/hadoop-hadoop-datanode-localhost.out 
+Starting secondary namenodes [0.0.0.0]
+Step 3 − Verifying Yarn Script
+The following command is used to start the yarn script. Executing this command will start your yarn daemons.
+
+$ start-yarn.sh 
+The expected output as follows −
+
+starting yarn daemons 
+starting resourcemanager, logging to /home/hadoop/hadoop
+2.4.1/logs/yarn-hadoop-resourcemanager-localhost.out 
+localhost: starting nodemanager, logging to /home/hadoop/hadoop
+2.4.1/logs/yarn-hadoop-nodemanager-localhost.out 
+Step 4 − Accessing Hadoop on Browser
+The default port number to access Hadoop is 50070. Use the following url to get Hadoop services on browser.
+
+http://localhost:50070/
+Accessing Hadoop on Browser
+Step 5 − Verify All Applications for Cluster
+The default port number to access all applications of cluster is 8088. Use the following url to visit this service.
+
+http://localhost:8088/
+Hadoop Application Cluster
+Hadoop - HDFS Overview
+Hadoop File System was developed using distributed file system design. It is run on commodity hardware. Unlike other distributed systems, HDFS is highly faulttolerant and designed using low-cost hardware.
+
+HDFS holds very large amount of data and provides easier access. To store such huge data, the files are stored across multiple machines. These files are stored in redundant fashion to rescue the system from possible data losses in case of failure. HDFS also makes applications available to parallel processing.
+
+Features of HDFS
+It is suitable for the distributed storage and processing.
+Hadoop provides a command interface to interact with HDFS.
+The built-in servers of namenode and datanode help users to easily check the status of cluster.
+Streaming access to file system data.
+HDFS provides file permissions and authentication.
+HDFS Architecture
+Given below is the architecture of a Hadoop File System.
+
+HDFS Architecture
+HDFS follows the master-slave architecture and it has the following elements.
