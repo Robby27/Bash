@@ -1,0 +1,35 @@
+Socket Programming
+
+Sr.No.	Term & Description
+1	
+domain
+
+The family of protocols that will be used as the transport mechanism. These values are constants such as PF_INET, PF_UNIX, PF_X25, and so on.
+
+2	
+type
+
+The type of communications between the two endpoints, typically SOCK_STREAM for connection-oriented protocols and SOCK_DGRAM for connectionless protocols.
+
+3	
+protocol
+
+Typically zero, this may be used to identify a variant of a protocol within a domain and type.
+
+4	
+hostname
+
+The identifier of a network interface −
+
+A string, which can be a host name, a dotted-quad address, or an IPV6 address in colon (and possibly dot) notation
+
+A string "<broadcast>", which specifies an INADDR_BROADCAST address.
+
+A zero-length string, which specifies INADDR_ANY, or
+
+An Integer, interpreted as a binary address in host byte order.
+
+5	
+port
+
+Each server listens for clients calling on one or more ports. A port may be a Fixnum port number, a string containing a port number, or the name of a service.
