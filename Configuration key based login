@@ -1,0 +1,10 @@
+Configuring Key Based Login
+Setup ssh in every node such that they can communicate with one another without any prompt for password.
+
+# su hadoop 
+$ ssh-keygen -t rsa 
+$ ssh-copy-id -i ~/.ssh/id_rsa.pub tutorialspoint@hadoop-master 
+$ ssh-copy-id -i ~/.ssh/id_rsa.pub hadoop_tp1@hadoop-slave-1 
+$ ssh-copy-id -i ~/.ssh/id_rsa.pub hadoop_tp2@hadoop-slave-2 
+$ chmod 0600 ~/.ssh/authorized_keys 
+$ exit
