@@ -1,0 +1,27 @@
+Format Name Node on Hadoop Master
+# su hadoop 
+$ cd /opt/hadoop/hadoop 
+$ bin/hadoop namenode –format
+11/10/14 10:58:07 INFO namenode.NameNode: STARTUP_MSG:
+/************************************************************ 
+STARTUP_MSG: Starting NameNode 
+STARTUP_MSG: host = hadoop-master/192.168.1.109 
+STARTUP_MSG: args = [-format] 
+STARTUP_MSG: version = 1.2.0 
+STARTUP_MSG: build = https://svn.apache.org/repos/asf/hadoop/common/branches/branch-1.2 -r 1479473;
+compiled by 'hortonfo' on Mon May 6 06:59:37 UTC 2013 
+STARTUP_MSG: java = 1.7.0_71 
+
+************************************************************/
+11/10/14 10:58:08 INFO util.GSet: Computing capacity for map BlocksMap
+editlog=/opt/hadoop/hadoop/dfs/name/current/edits
+………………………………………………….
+………………………………………………….
+…………………………………………………. 
+11/10/14 10:58:08 INFO common.Storage: Storage directory 
+/opt/hadoop/hadoop/dfs/name has been successfully formatted.
+11/10/14 10:58:08 INFO namenode.NameNode: 
+SHUTDOWN_MSG:
+/************************************************************
+SHUTDOWN_MSG: Shutting down NameNode at hadoop-master/192.168.1.15
+************************************************************/
